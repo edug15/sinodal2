@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tela de Login</title>
+
+  <link rel="shortcut icon"
+  href="https://static.wixstatic.com/media/f3e530_3a57d6261cc84c7cada5d38584cb6727~mv2.png/v1/fill/w_444,h_450,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/f3e530_3a57d6261cc84c7cada5d38584cb6727~mv2.png"
+  type="image/x-icon">
+   
+  <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #0077b6; /* Azul */
+        }
+
+        label {
+            color: #333; /* Cinza */
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
+            transition: transform 0.2s, box-shadow 0.2s; /* Transição ao passar o mouse */
+        }
+
+        input:hover {
+            transform: scale(1.03); /* Efeito de escala ao passar o mouse */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Sombra aumentada ao passar o mouse */
+        }
+
+        #usuario, #senha {
+            font-family: Arial, sans-serif;
+        }
+
+        #aviso {
+            color: #ff0000; /* Vermelho */
+        }
+
+        #entrar-btn {
+            background-color: #0077b6; /* Cor azul */
+            color: #fff; /* Texto branco */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra */
+            transition: transform 0.2s, box-shadow 0.2s; /* Transição ao passar o mouse */
+        }
+
+        #entrar-btn:hover {
+            transform: scale(1.1); /* Efeito de escala ao passar o mouse */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Sombra aumentada ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 login-container">
+                <img src="https://static.wixstatic.com/media/f3e530_3a57d6261cc84c7cada5d38584cb6727~mv2.png/v1/fill/w_444,h_450,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/f3e530_3a57d6261cc84c7cada5d38584cb6727~mv2.png" alt="Sua Imagem" width="100">
+                <h1>Login</h1>
+                <form onsubmit="return validarLogin();" method="post">
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Usuário:</label>
+                        <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Aluno1" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="senha" class="form-label">Senha:</label>
+                        <input type="password" id="senha" name="senha" class="form-control" placeholder="teste1@" required>
+                    </div>
+
+                    <a href="tela/tela.html"> 
+                      <button type="button" id="entrar-btn">Entrar</button>
+                    </a>
+               
+                </form>
+                <p id="aviso"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validarLogin() {
+            var usuario = document.getElementById("usuario").value;
+            var senha = document.getElementById("senha").value;
+
+            if (usuario === "" || senha === "") {
+                document.getElementById("aviso").innerText = "Preencha todos os campos.";
+                return false;
+            } else if (usuario === "aluno1" && senha === "teste1@") {
+                document.getElementById("aviso").innerText = ""; // Limpa o aviso
+                return false; // Impede o envio do formulário
+            } else {
+                document.getElementById("aviso").innerText = "Usuário ou senha incorretos. Tente novamente.";
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

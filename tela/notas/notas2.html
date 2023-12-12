@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Planilha de Notas</title>
+
+  <link rel="shortcut icon"
+  href="logo sinodal (copy).webp"
+  type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #0077b6;
+            color: #fff;
+            padding: 10px 0;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: #0077b6;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .navbar-title {
+            position: relative;
+            color: #fff;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar-title:hover {
+            color: #66a3d2;
+        }
+
+        .back-button {
+            margin: 10px;
+            background-color: #0077b6;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover {
+            background-color: #005684;
+            transform: scale(1.05);
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #0077b6;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><strong>........</strong></h1>
+        <div class="navbar-title"><strong>Notas</strong></div>
+        <button class="back-button" onclick="goBack()">Voltar</button>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Materia</th>
+                <th>1º Trimestre </th>
+                <th>2º Trimestre </th>
+                <th>3º Trimestre </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Português</td>
+                <td>MB</td>
+                <td>B</td>
+                <td>MB</td>
+            </tr>
+          <tr>
+              <td>Matemática</td>
+              <td>B</td>
+              <td>S</td>
+              <td>B</td>
+          </tr>
+          <tr>
+              <td>História</td>
+              <td>MB</td>
+              <td>B</td>
+              <td>B</td>
+          </tr>
+          <tr>
+              <td>Geografia</td>
+              <td>MB</td>
+              <td>B</td>
+              <td>B</td>
+          </tr>
+          <tr>
+              <td>Química</td>
+              <td>B</td>
+              <td>B</td>
+              <td>B</td>
+          </tr>
+          <tr>
+              <td>Literatura</td>
+              <td>MB</td>
+              <td>B</td>
+              <td>MB</td>
+          </tr>
+          <tr>
+              <td>Biologia</td>
+              <td>MB</td>
+              <td>MB</td>
+              <td>MB</td>
+          </tr>
+          <tr>
+              <td>Física</td>
+              <td>B</td>
+              <td>S</td>
+              <td>MB</td>
+          </tr>
+          <tr>
+              <td>Redação</td>
+              <td>MB</td>
+              <td>S</td>
+              <td>B</td>
+          </tr>
+            <!-- Adicione mais linhas para outras matérias -->
+        </tbody>
+    </table>
+
+    <footer>
+        <p>&copy; 2023 Colégio Sinodal Progresso</p>
+    </footer>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

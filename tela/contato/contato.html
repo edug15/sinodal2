@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Contatos</title>
+  <link rel="shortcut icon"
+  href="logo sinodal (copy).webp"
+  type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #0077b6;
+            color: #fff;
+            padding: 10px 0;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: #0077b6;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .navbar-title {
+            position: relative;
+            color: #fff;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar-title:hover {
+            color: #66a3d2;
+        }
+
+        .back-button {
+            margin: 10px;
+            background-color: #0077b6;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover {
+            background-color: #005684;
+            transform: scale(1.05);
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #0077b6;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .contact-section {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-input {
+            margin: 10px;
+            padding: 8px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #0077b6;
+        }
+
+        .form-textarea {
+            margin: 10px;
+            padding: 8px;
+            width: 300px;
+            height: 100px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: #0077b6;
+        }
+
+        .form-button {
+            margin: 10px;
+            background-color: #0077b6;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-button:hover {
+            background-color: #005684;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><strong>...........</strong></h1>
+        <div class="navbar-title"><strong>Contatos</strong></div>
+        <button class="back-button" onclick="goBack()">Voltar</button>
+    </header>
+
+    <div class="contact-section">
+        <h2>Entre em Contato</h2>
+        <div class="contact-form">
+            <input type="text" class="form-input" placeholder="Seu Nome">
+            <input type="email" class="form-input" placeholder="Seu Email">
+            <textarea class="form-textarea" placeholder="Sua Mensagem"></textarea>
+            <button class="form-button" onclick="submitForm()">Enviar</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Colégio Sinodal Progresso<div></div>contato@sinodalprogresso.com.br<div style="margin: 15px">
+        Tel:  (51) 3632-2318</div></p>
+    </footer>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function submitForm() {
+            // Lógica para enviar o formulário, se necessário
+            alert('Formulário enviado!');
+        }
+    </script>
+</body>
+</html>

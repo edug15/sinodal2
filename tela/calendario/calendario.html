@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário</title>
+
+  
+    <link rel="shortcut icon"
+    href="logo sinodal.webp"
+    type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Desabilita a rolagem vertical e horizontal */
+        }
+
+        .calendar {
+            width: 100vw;
+            height: 70vh;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            overflow: auto; /* Adiciona rolagem apenas quando necessário */
+        }
+
+        .calendar .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0077b6;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .calendar .header .arrow {
+            cursor: pointer;
+            background-color: #0077b6;
+            color: #fff;
+            border: none;
+            font-size: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar .header .arrow:hover {
+            background-color: #005687;
+        }
+
+        .calendar .header .currentDate {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .calendar .body {
+            margin-top: 10px;
+        }
+
+        .calendar .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .calendar .days .day {
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            background-color: #f2f2f2;
+        }
+
+        .calendar .days .day:hover {
+            background-color: #d9d9d9;
+        }
+
+        .calendar .dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-gap: 5px;
+        }
+
+        .calendar .dates .date {
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+
+        .calendar .dates .date:hover {
+            background-color: #f9f9f9;
+        }
+
+        .calendar .dates .today {
+            background-color: #dcdcdc;
+        }
+
+        .back-button {
+            margin: 10px;
+            background-color: #0077b6;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover {
+            background-color: #005684;
+            transform: scale(1.05);
+        }
+
+        /* Nova seção de compromissos */
+        .appointments {
+            width: 100vw;
+            max-height: 20vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start; /* Alinha os compromissos mais acima */
+            justify-content: flex-start;
+            padding: 10px;
+        }
+
+        .appointment {
+            min-width: 200px;
+            padding: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .appointment:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar" id="calendar"></div>
+
+    <!-- Adiciona a seção de compromissos -->
+    <div class="appointments" id="appointments"></div>
+
+    <button class="back-button" onclick="goBack()">Voltar</button>
+  
+    <script>
+        const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+        ];
+
+        const dayNames = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+
+        const date = new Date();
+        let currentMonth = date.getMonth();
+        let currentYear = date.getFullYear();
+
+        function getFirstDayOfMonth(month, year) {
+            return new Date(year, month, 1).getDay();
+        }
+
+        function getDaysInMonth(month, year) {
+            return new Date(year, month + 1, 0).getDate();
+        }
+
+        function generateCalendar(month, year) {
+            let calendar = document.getElementById('calendar');
+            let firstDay = getFirstDayOfMonth(month, year);
+            let daysInMonth = getDaysInMonth(month, year);
+            let today = new Date();
+
+            calendar.innerHTML = '';
+
+            let calendarHeader = document.createElement('div');
+            calendarHeader.classList.add('header');
+
+            let prevMonth = document.createElement('div');
+            prevMonth.classList.add('arrow');
+            prevMonth.textContent = '⇦';
+            prevMonth.addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                generateCalendar(currentMonth, currentYear);
+            });
+
+            let nextMonth = document.createElement('div');
+            nextMonth.classList.add('arrow');
+            nextMonth.textContent = '⇨';
+            nextMonth.addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                generateCalendar(currentMonth, currentYear);
+            });
+
+            let currentDate = document.createElement('div');
+            currentDate.classList.add('currentDate');
+            currentDate.textContent = monthNames[month] + ' ' + year;
+
+            calendarHeader.appendChild(prevMonth);
+            calendarHeader.appendChild(currentDate);
+            calendarHeader.appendChild(nextMonth);
+            calendar.appendChild(calendarHeader);
+
+            let calendarBody = document.createElement('div');
+            calendarBody.classList.add('body');
+
+            let daysRow = document.createElement('div');
+            daysRow.classList.add('days');
+
+            for (let i = 0; i < 7; i++) {
+                let day = document.createElement('div');
+                day.classList.add('day');
+                day.textContent = dayNames[i];
+                daysRow.appendChild(day);
+            }
+
+            calendarBody.appendChild(daysRow);
+
+            let datesRow = document.createElement('div');
+            datesRow.classList.add('dates');
+
+            for (let i = 0; i < firstDay; i++) {
+                let date = document.createElement('div');
+                date.classList.add('date');
+                datesRow.appendChild(date);
+            }
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                let date = document.createElement('div');
+                date.classList.add('date');
+                date.textContent = i;
+
+                if (today.getDate() === i && today.getMonth() === month && today.getFullYear() === year) {
+                    date.classList.add('today');
+                }
+
+                date.addEventListener('click', () => {
+                    showAppointments(i); // Chama a função para mostrar os compromissos do dia
+                });
+
+                datesRow.appendChild(date);
+            }
+
+            calendarBody.appendChild(datesRow);
+            calendar.appendChild(calendarBody);
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        // Adiciona uma função para mostrar compromissos do dia
+        function showAppointments(day) {
+            const appointmentsContainer = document.getElementById('appointments');
+            appointmentsContainer.innerHTML = '';
+
+            const appointments = getDummyAppointments(day); // Substitua esta função com sua lógica real para obter compromissos
+
+            appointments.forEach(appointment => {
+                const appointmentElement = document.createElement('div');
+                appointmentElement.classList.add('appointment');
+                appointmentElement.textContent = appointment;
+                appointmentsContainer.appendChild(appointmentElement);
+            });
+        }
+
+        // Função de exemplo para obter compromissos fictícios
+        function getDummyAppointments(day) {
+            const dummyAppointments = [
+                `Prova 1 em ${day}`,
+                `Prova 2 em ${day}`,
+                `Trabalho 3 em ${day}`,
+                `Sem compromisso em ${day}`,
+                `Prova X em ${day}`,
+                `Sem compromisso em ${day}`,
+                `Compromisso importante em ${day}`
+            ];
+            return dummyAppointments;
+        }
+
+        generateCalendar(currentMonth, currentYear);
+    </script>
+</body>
+</html>
